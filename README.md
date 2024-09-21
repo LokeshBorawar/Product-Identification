@@ -9,15 +9,15 @@
 - Please see all results from evey CLIP model, below are just from CLIP-ViT-L-14.
 - These are Demo1 results. The first shows which two of the best inventory images match the product. And, the second one shows the similarity matrix of the product to all inventory items.
 
-![cid1](Demo1/clip-ViT-L-14_composite_image.png)
+  ![cid1](Demo1/clip-ViT-L-14_composite_image.png)
 
-![cid1](Demo1/clip-ViT-L-14_confusion_matrix.png)
+  ![cid1](Demo1/clip-ViT-L-14_confusion_matrix.png)
 
 - These are Demo2 results.
 
-![cid2](Demo2/clip-ViT-L-14_composite_image.png)
+  ![cid2](Demo2/clip-ViT-L-14_composite_image.png)
 
-![cid2](Demo2/clip-ViT-L-14_confusion_matrix.png)
+  ![cid2](Demo2/clip-ViT-L-14_confusion_matrix.png)
  
 
 ## Contacts:
