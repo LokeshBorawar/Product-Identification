@@ -10,4 +10,4 @@ Added a demo code which runs on a image and detects produts. Final code runs on 
 
 - The second [demo product_extract_demo.py](product_extract_demo.py) takes the implementation a step further by applying GroundingDINO to video footage, simulating a real-life example of a CCTV feed from a store or mall. A good prompt and better thresholds (BOX_THRESHOLD and TEXT_THRESHOLD) can lead to a excellent result. Please see complete video in the [output directory](asset/outputs).
 
-  ![cctv]("asset/outputs/HD CCTV Camera video 3MP 4MP iProx CCTV HDCCTVCameras.net retail store.gif")
+  ![CCTV](asset/outputs/HD%20CCTV%20Camera%20video%203MP%204MP%20iProx%20CCTV%20HDCCTVCameras.net%20retail%20store.gif)
