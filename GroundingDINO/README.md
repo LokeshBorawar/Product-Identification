@@ -1,6 +1,6 @@
 # Extracting product images using [GroundingDINO](https://github.com/IDEA-Research/GroundingDINO.git) for identification.
 
-Added a demo code which runs on a image and detects produts. Final code runs on a video which is like frames coming from cctv and the code extract products, people are holding.
+Added a demo code that runs on an image and detects products. The final code processes video frames, simulating a CCTV feed, and extracts the products that people are holding.
 
 - GroundingDINO is an advanced vision-language model designed for object detection and segmentation tasks. It combines image and text inputs to detect objects in images based on specific prompts. By grounding the understanding of objects in both visual and textual information, GroundingDINO excels in identifying and localizing objects that match the given description. This model is particularly useful in applications where precise, text-driven object detection is required, such as extracting relevant objects from images for further processing, like product identification.
 
