@@ -1,4 +1,5 @@
 from moviepy.editor import VideoFileClip
+import os
 
 # Load the video
 video_path = r"GroundingDINO\asset\outputs\HD CCTV Camera video 3MP 4MP iProx CCTV HDCCTVCameras.net retail store.mp4"
@@ -12,13 +13,16 @@ new_height = int(new_width * aspect_ratio)
 # Resize the video while keeping the aspect ratio
 resized_video = video.resize(newsize=(new_width, new_height))
 
-# Save the resized video
-output_path = video_path
+# Save the resized new video
+output_path = "GroundingDINO/asset/outputs/1_"+os.path.basename(video_path)
 resized_video.write_videofile(output_path)
 
 
+# remove old video and give old video name to new video
+os.remove(video_path)
+os.rename(output_path,video_path)
 
-video_path=output_path
+
 # Load the video file
 clip = VideoFileClip(video_path)
 # Extract the segment from 35 to 45 seconds
