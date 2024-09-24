@@ -20,6 +20,10 @@
   ![cid2](Demo2/clip-ViT-L-14_confusion_matrix.png)
  
 
+## Requirements:
+- Please check right version in [requirements.csv](requirements.csv)
+
+
 ## Contacts:
 - borawarlokesh26@gmail.com
 
