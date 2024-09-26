@@ -8,9 +8,9 @@
 
 - Finally, the [GroundingDINO model (product_extraction_demo.py)](product_extraction_demo.py) is set to detect objects that are held in the hands of individuals within the scene. This combination of technologies facilitates a sophisticated analysis of the video, enhancing the ability to track and understand human interactions with their environment.
 
-- Output of [matting_demo.py](matting_demo.py)
+- Output of [matting_demo.py](matting_demo.py).
   ![processed_video](outputs/processed_video.gif)
-- Output of [matting + groundingdino](product_extraction_demo.py)
+- Output of [matting + groundingdino](product_extraction_demo.py). A woman is in the center holding a child who is carrying a box. The box is detected, but it is not recognized when GroundingDINO is used.
   ![groundingdino_matting_clip](outputs/groundingdino_matting_clip.gif)
-- Output of [groundingdino](GroundingDINO/product_extract_demo.py)
+- Output of [groundingdino](GroundingDINO/product_extract_demo.py).
   ![groundingdino_clip](outputs/groundingdino_clip.gif)
