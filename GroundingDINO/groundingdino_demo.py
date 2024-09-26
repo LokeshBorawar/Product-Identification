@@ -8,7 +8,7 @@ import cv2
 import os
 
 
-def load_model_hf(repo_id, filename, ckpt_config_filename, device='cpu'):
+def load_model_hf(repo_id, filename, ckpt_config_filename, device='cuda' if torch.cuda.is_available() else 'cpu'):
     cache_config_file = hf_hub_download(repo_id=repo_id, filename=ckpt_config_filename)
 
     args = SLConfig.fromfile(cache_config_file) 
@@ -16,7 +16,7 @@ def load_model_hf(repo_id, filename, ckpt_config_filename, device='cpu'):
     args.device = device
 
     cache_file = hf_hub_download(repo_id=repo_id, filename=filename)
-    checkpoint = torch.load(cache_file, map_location='cpu')
+    checkpoint = torch.load(cache_file, map_location=device)
     log = model.load_state_dict(clean_state_dict(checkpoint['model']), strict=False)
     print("Model loaded from {} \n => {}".format(cache_file, log))
     _ = model.eval()
@@ -28,7 +28,7 @@ ckpt_config_filename = "GroundingDINO_SwinT_OGC.cfg.py" # GroundingDINO_SwinB.cf
 
 model = load_model_hf(ckpt_repo_id, ckpt_filenmae, ckpt_config_filename)
 
-local_image_path=".asset/redbull2.jpg"
+local_image_path="asset/redbull2.jpg"
 image_source, image = load_image(local_image_path)
 
 TEXT_PROMPT = "hand grasped object. person."#"object held by person"#"grasped object. person. hand."
@@ -46,7 +46,7 @@ boxes, logits, phrases = predict(
 print(phrases)
 if 'grasped object' not in phrases:#len(boxes) == 0
     print(f"No objects of the '{TEXT_PROMPT}' prompt detected in the image.")
-    cv2.imwrite(".asset/outputs/"+os.path.basename(local_image_path),image_source[...,::-1])
+    cv2.imwrite("asset/outputs/"+os.path.basename(local_image_path),image_source[...,::-1])
 else:
     # puts 'grasped object' at the last.
     #sorted_indices = sorted(range(len(phrases)), key=lambda i: phrases[i].lower() == "grasped object")
@@ -67,5 +67,5 @@ else:
 
     annotated_frame = annotate(image_source=image_source, boxes=sorted_boxes, logits=sorted_logits, phrases=sorted_phrases)
     #annotated_frame = annotated_frame[...,::-1] # BGR to RGB
-    cv2.imwrite(".asset/outputs/"+os.path.basename(local_image_path),annotated_frame)
+    cv2.imwrite("asset/outputs/"+os.path.basename(local_image_path),annotated_frame)
     print(sorted_phrases)
