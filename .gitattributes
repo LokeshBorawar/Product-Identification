@@ -1,0 +1,4 @@
+BackgroundMattingV2/inputs/rsrc.mp4 filter=lfs diff=lfs merge=lfs -text
+BackgroundMattingV2/outputs/boxed_product.mp4 filter=lfs diff=lfs merge=lfs -text
+BackgroundMattingV2/weights/torchscript_resnet50_fp32.pth filter=lfs diff=lfs merge=lfs -text
+BackgroundMattingV2/weights/pytorch_resnet101.pth filter=lfs diff=lfs merge=lfs -text
