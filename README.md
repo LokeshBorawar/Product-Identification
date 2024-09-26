@@ -2,7 +2,7 @@
 
 - To identify products in a store, this repository utilizes a CLIP model that generates feature embeddings for various items. By leveraging cosine similarity, the model compares these embeddings against a database of pre-saved features from the store inventory to accurately identify products. The implementation specifically employs several versions of CLIP, including CLIP-ViT-L-14, CLIP-ViT-B-16, and CLIP-ViT-B-32, to generate these product embeddings.
 
-- However, prior preprocessing is essential. The process begins by detecting and identifying each person in the scene and assigning them a unique ID. Once individuals are [identified](https://github.com/LokeshBorawar/LA-Transformer.git), the next step is to capture images of the products ([using GroundingDINO](GroundingDINO/README.md)) they hold, as the model requires product images for recognition. This task can be challenging. Maybe GroundingDINO will perform better after removing the background, leaving only the human holding the products in the live image. Alternatively, the system can utilize cameras in shopping baskets or monitor items at checkout to obtain product images, thereby streamlining the identification process. For demonstration purposes, products in the frames captured by [CCTV](CCTV) are manually [cropped](Demo1/zoom).
+- However, prior preprocessing is essential. The process begins by detecting and identifying each person in the scene and assigning them a unique ID. Once individuals are [identified](https://github.com/LokeshBorawar/LA-Transformer.git), the next step is to capture images of the products ([using GroundingDINO](GroundingDINO/README.md)) they hold, as the model requires product images for recognition. This task can be challenging. Maybe GroundingDINO will perform better after [removing the background](BackgroundMattingV2/README.md), leaving only the human holding the products in the live image. Alternatively, the system can utilize cameras in shopping baskets or monitor items at checkout to obtain product images, thereby streamlining the identification process. For demonstration purposes, products in the frames captured by [CCTV](CCTV) are manually [cropped](Demo1/zoom).
 
 - In [Demo 1](Demo1), inventory images are sourced from the [Foodi-ML](https://github.com/Glovo/foodi-ml-dataset.git) dataset, ensuring that each product image is of higher resolution than the zoomed CCTV images. In contrast, [Demo 2](Demo2) involves a similar technique for both the inventory images and the zoomed CCTV images, where both sets are zoomed in on the products, resulting in lower resolution. This approach highlights the differences in image quality and emphasizes the challenges faced in accurately identifying products from varying sources.
 
@@ -31,6 +31,7 @@
 ## Credits:
 - [foodi-ml-dataset](https://github.com/Glovo/foodi-ml-dataset.git)
 - [GroundingDINO](https://github.com/IDEA-Research/GroundingDINO.git)
+- [BackgroundMattingV2](https://github.com/PeterL1n/BackgroundMattingV2.git)
 - Video used in GroundingDINO demo:
   - [https://www.youtube.com/watch?v=KMJS66jBtVQ&t=1s](https://www.youtube.com/watch?v=KMJS66jBtVQ&t=1s)
 - Images used in Product-Identification demo:
