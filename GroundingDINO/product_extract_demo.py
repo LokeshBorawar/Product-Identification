@@ -67,7 +67,7 @@ def save_video_frames(video_path):
 
     return output_folder
 
-def load_model_hf(repo_id, filename, ckpt_config_filename, device='cpu'):
+def load_model_hf(repo_id, filename, ckpt_config_filename, device='cuda' if torch.cuda.is_available() else 'cpu'):
     cache_config_file = hf_hub_download(repo_id=repo_id, filename=ckpt_config_filename)
 
     args = SLConfig.fromfile(cache_config_file) 
@@ -75,7 +75,7 @@ def load_model_hf(repo_id, filename, ckpt_config_filename, device='cpu'):
     args.device = device
 
     cache_file = hf_hub_download(repo_id=repo_id, filename=filename)
-    checkpoint = torch.load(cache_file, map_location='cpu')
+    checkpoint = torch.load(cache_file, map_location=device)
     log = model.load_state_dict(clean_state_dict(checkpoint['model']), strict=False)
     print("Model loaded from {} \n => {}".format(cache_file, log))
     _ = model.eval()
@@ -93,10 +93,10 @@ BOX_THRESHOLD = 0.23
 TEXT_THRESHOLD = 0.21
 
 
-video_path=".asset/HD CCTV Camera video 3MP 4MP iProx CCTV HDCCTVCameras.net retail store.mp4"
+video_path="asset/HD CCTV Camera video 3MP 4MP iProx CCTV HDCCTVCameras.net retail store.mp4"
 output_folder=save_video_frames(video_path)
 
-local_frames_path=output_folder+"/"#".asset/birthday-shopping-at-the-mall-with-no-budget/"
+local_frames_path=output_folder+"/" # "asset/HD CCTV Camera video 3MP 4MP iProx CCTV HDCCTVCameras.net retail store.mp4"
 frame_names=os.listdir(local_frames_path)
 frame_names.sort()
 
@@ -106,7 +106,7 @@ frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 cap.release()
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec for .mp4 format
-video_writer = cv2.VideoWriter(".asset/outputs/"+os.path.basename(video_path), fourcc, fps, (frame_width, frame_height))
+video_writer = cv2.VideoWriter("asset/outputs/"+os.path.basename(video_path), fourcc, fps, (frame_width, frame_height))
 
 
 class_ob="what"
@@ -126,7 +126,7 @@ for frame_name in frame_names:
     print(phrases)
     if class_ob not in phrases:#len(boxes) == 0
         print(f"No objects of the '{TEXT_PROMPT}' prompt detected in the image.")
-        annotated_frame=image_source[...,::-1]
+        annotated_frame=image_source[...,::-1] # RGB to BGR
     else:
         # puts 'class_ob' at the last.
         #sorted_indices = sorted(range(len(phrases)), key=lambda i: phrases[i].lower() == class_ob)
