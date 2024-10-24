@@ -50,7 +50,7 @@ def detect_person_in_video(video_path, confidence_level=0.8, class_ids=[0]):
             
         # Create a mask where the black pixels are located (assuming black is [0, 0, 0])
         mask = np.sum(frame, axis=-1)>0 # mask = np.all(background == [0, 0, 0], axis=-1)
-        if np.sum(mask)==0:
+        if np.sum(np.all(background == [0, 0, 0], axis=-1))==0:
             break
         # Fill the black pixels in the output image with values from the second image
         background[mask] = frame[mask]
