@@ -18,11 +18,11 @@ if torchscript_model==True:
     model = torch.jit.load('weights/torchscript_resnet50_fp32.pth').to(device).eval()
 else:
     model_type='mattingrefine'
-    model_backbone='resnet50'
+    model_backbone='resnet101'
     model_backbone_scale=0.25
     model_refine_mode='sampling'
     model_refine_sample_pixels=80000
-    model_checkpoint="weights/pytorch_resnet50.pth"
+    model_checkpoint="weights/pytorch_resnet101.pth"
     if model_type == 'mattingbase':
         model = MattingBase(model_backbone)
     if model_type == 'mattingrefine':
