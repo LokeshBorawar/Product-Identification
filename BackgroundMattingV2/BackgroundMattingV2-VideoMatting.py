@@ -26,11 +26,11 @@ device=torch_directml.device()
 # Define the parameters you want to set
 args = argparse.Namespace(
     model_type='mattingrefine',
-    model_backbone='resnet50',
+    model_backbone='resnet101',
     model_backbone_scale=0.25,
     model_refine_mode='sampling',
     model_refine_sample_pixels=80000,
-    model_checkpoint="weights/pytorch_resnet50.pth",
+    model_checkpoint="weights/pytorch_resnet101.pth",
     video_src="inputs/rsrc.mp4",
     video_bgr="inputs/bgr-Photoroom.png",
     video_target_bgr=None,
